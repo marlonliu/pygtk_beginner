@@ -1,0 +1,31 @@
+7 users:
+alice
+- bob toanswer
+- carol
+- elian
+.
+bob
+- alice requested
+- carol
+- david requested
+- elian requested
+.
+carol
+- alice
+- bob
+- elian toanswer
+.
+david
+- bob toanswer
+- elian toanswer
+.
+elian
+- alice
+- bob toanswer
+- carol requested
+- david requested
+.
+"
+.
+foo
+.

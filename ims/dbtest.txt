@@ -1,0 +1,21 @@
+6 users:
+alice
+- carol
+- elian
+- sam
+.
+bob
+- carol
+.
+carol
+- alice
+- bob
+.
+david
+.
+elian
+- alice
+.
+sam
+- alice
+.
