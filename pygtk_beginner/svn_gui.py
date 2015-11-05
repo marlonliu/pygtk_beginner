@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-
 import pygtk
 pygtk.require('2.0')
 import gtk
+
 
 class svn_gui:
     def func_destroy_main(self, widget, data=None):
@@ -29,8 +29,17 @@ class svn_gui:
     def func_svn_commit(self, widget, data=None):
         message = self.entry.get_text()
         filename = self.filec.get_filename()
+        '''
+        from subprocess import PIPE,Popen
+        proc = Popen(["svn commit %s -m'%s'" % (filename,message)], stdout=PIPE)
+        proc = Popen(["ls -al"], stdout=PIPE)
+        proc = proc.communicate()[0].split()
+        print "LOOK HERE" + proc
+        buff.set_text("Committed sucessfully. We are now at revision %s" % proc[proc.index("revision")])
+        self.msgbox.set_buffer(buff)
+        '''
         import os
-        os.system("svn commit %s -m'%s'" % (filename,message))
+        os.system("svn commit %s -m'%s'" % (filename, message))
 
     def func_choose_file_add(self, widget, data=None):
         if self.allfiles.get_active() is True:
@@ -60,6 +69,10 @@ class svn_gui:
         if self.commit_resume == 0:
             return
         message = self.entry.get_text()
+        # printing status information for onging committing
+        self.buff = self.msgbox.get_buffer()
+        self.buff.set_text("Committing. Please wait...")
+        #self.msgbox.set_buffer(buff)
         if self.allfiles.get_active() is True:
             import os
             os.system("svn commit ./* -m'%s'" % message)
@@ -79,6 +92,7 @@ class svn_gui:
         '''
         Widget Hierarchy:
         window - vbox - entry field
+                      - msgbox
                       - hbox1        - svn check out button
                                      - openfolder button
                                      - svn add button
@@ -102,6 +116,9 @@ class svn_gui:
         self.closewindow = gtk.Button("Close Window")
         # entry field properties
         self.entry = gtk.Entry(200)
+        # message box properties
+        self.msgbox = gtk.TextView()
+        self.msgbox.set_editable(False)
         # vbox containing the text entry field followed by a sequence of hboxes
         self.vbox = gtk.VBox(False, 5)
         # hbox containing all buttons
@@ -127,10 +144,12 @@ class svn_gui:
         # widget packing
         self.window.add(self.vbox)
         self.vbox.pack_start(self.entry,True, True,0)
+        self.vbox.pack_start(self.msgbox,True, True,0)
         self.vbox.pack_start(self.hbox1,False, False,0)
         self.vbox.pack_start(self.hbox2,False, False,0)
         # show up
         self.entry.show()
+        self.msgbox.show()
         self.vbox.show()
         self.hbox1.show()
         self.hbox2.show()
