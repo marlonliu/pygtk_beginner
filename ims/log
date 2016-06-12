@@ -3,10 +3,10 @@ reading quit from server (free everything)
 verbose mode
 
 Have tested:
-# register(existant names and not; when bound)
-# login(existant names and not; when bound)
+# register(existent names and not; when bound)
+# login(existent names and not; when bound)
 # logout(when bound and not bound)
 # remove(friend exists or not; user does not exist; user=self)
-# request(existant, nonexistant, confirm request)
+# request(existent, nonexistant, confirm request)
 # list
 # im (all cases)

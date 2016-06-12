@@ -32,7 +32,7 @@ class svn_gui:
         proc = Popen(["ls -al"], stdout=PIPE)
         proc = proc.communicate()[0].split()
         print "LOOK HERE" + proc
-        buff.set_text("Committed sucessfully. We are now at revision %s" % proc[proc.index("revision")])
+        buff.set_text("Committed successfully. We are now at revision %s" % proc[proc.index("revision")])
         self.msgbox.set_buffer(buff)
         '''
         self.printmsg("Committing. Please wait...")
