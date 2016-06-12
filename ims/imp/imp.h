@@ -147,7 +147,7 @@ typedef enum {
 */
 typedef struct {
   impMsgType_t mt;   /* message type */
-  char *userName;    /* used for every type of protocal message, so it
+  char *userName;    /* used for every type of protocol message, so it
                         belongs in generic impMsg (even though the username
                         is not used in every possible instance of a given
                         message type) */
